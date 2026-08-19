@@ -31,7 +31,6 @@ Across the 12 provided ciphertexts, this got 10 fully solved — the remaining t
 ## Technologies used
 
 * Python
-* pandas
 * NumPy
 * Matplotlib
 * Jupyter Notebook
