@@ -1,16 +1,16 @@
 # Statistical Decryption Model
 
-A Python project that breaks encrypted messages using ideas borrowed from statistical physics. Rather than treating decryption as a linguistics puzzle, it treats it as an optimisation problem: find the key that produces the most statistically plausible English (or French, or German) text out of a large search space.
+A Python project that breaks encrypted messages using ideas from statistical physics. Rather than treating decryption as a language puzzle, it treats it as an optimisation problem by finding the key that produces the most statistically plausible English (or French, or German) text out of a large search space.
 
 Originally built to solve a set of substitution ciphers set as a university project, it ended up going further than that.
 
-The main notebook (`Statistical Decrypter.ipynb`) walks through the whole thing, from a basic Caesar cipher solver up to a general-purpose cipher-breaking pipeline.
+The main notebook (`Statistical Decrypter.ipynb`) walks through the whole thing, from a basic Caesar cipher solver up to a general-purpose cipher-breaking program.
 
 ## How it works
 
-Starting point: download a large sample of English text (*Moby Dick*, via Project Gutenberg) and use it to work out what real English looks like statistically: how often each letter follows another, and so on.
+Starting point: downloads a large sample of English text (*Moby Dick*, via Project Gutenberg) and uses it to work out what real English looks like statistically: how often each letter follows another, etc.
 
-From there, any candidate decryption can be scored: does it look like real English, or gibberish? A **Metropolis algorithm** (a Monte Carlo method borrowed from statistical physics) then searches for the best-scoring key by repeatedly proposing small changes and accepting or rejecting them — with **simulated annealing** used to control how much randomness is allowed early on versus late on, so the search doesn't get stuck in a bad solution before it's had a chance to explore properly.
+From there, any candidate decryption can be scored: does it look like real English, or gibberish? A **Metropolis algorithm** (a Monte Carlo method from statistical physics) then searches for the best-scoring key by repeatedly proposing small changes and accepting or rejecting them, with **simulated annealing** used to control how much randomness is allowed early on versus late on, so the search doesn't get stuck in a bad solution before it's had a chance to explore properly.
 
 ## What it can break
 
@@ -26,7 +26,7 @@ Plain bigram scoring turned out not to be enough for short messages, so the proj
 * **Dictionary scoring**, so the algorithm is rewarded for producing real words, not just plausible letter pairs
 * **Automatic language detection**, running the same search across English, French, and German models and keeping whichever one converges on the most plausible result
 
-Across the 12 provided ciphertexts, this got 10 fully solved — the remaining two are short enough that there isn't enough statistical signal in the text to solve them reliably, which the notebook digs into as a limitation of the approach rather than a bug.
+Across the 12 provided ciphertexts, we were able to solve 10. The remaining two are short enough that there isn't enough statistical signal in the text to solve them reliably, which is a limitation of the approach rather than a bug.
 
 ## Technologies used
 
